@@ -1,0 +1,28 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+    - php: hhvm
+  allow_failures:
+    - php: hhvm
+
+before_script:
+  - composer self-update
+  - composer update --prefer-source
+
+script:
+  - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+  - ./vendor/bin/phpcs --standard=PSR2 ./src/
+
+after_script:
+  - php ./vendor/bin/coveralls -v
+
+notifications:
+  irc: "irc.freenode.org#zftalk.modules"
+  email: true
