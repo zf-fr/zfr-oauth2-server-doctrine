@@ -1,7 +1,24 @@
 <?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ */
 
 namespace ZfrOAuth2\Server\Doctrine\Repository;
 
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
 use ZfrOAuth2\Server\Model\AccessToken;
@@ -14,7 +31,10 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
      */
     public function save(AccessToken $token): AccessToken
     {
-        // not done
+        $this->_em->persist($token);
+        $this->_em->flush($token);
+
+        return $token;
     }
 
     /**
@@ -22,7 +42,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
      */
     public function findByToken(string $token)
     {
-        // not done
+        return $this->find($token);
     }
 
     /**
@@ -30,7 +50,8 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
      */
     public function deleteToken(AbstractToken $token)
     {
-        // not done
+        $this->_em->remove($token);
+        $this->_em->flush($token);
     }
 
     /**
@@ -38,6 +59,6 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
      */
     public function tokenExists(string $token): bool
     {
-        // not done
+        return (bool) $this->find($token);
     }
 }

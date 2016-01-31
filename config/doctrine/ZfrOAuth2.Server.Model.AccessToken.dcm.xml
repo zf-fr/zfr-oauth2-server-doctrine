@@ -3,8 +3,8 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="ZfrOAuth2\Server\Doctrine\Entity\AccessToken"
-            repository-class="ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository"
+    <entity name="ZfrOAuth2\Server\Model\AccessToken"
+            repository-class="ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface"
             table="oauth_access_tokens"
             read-only="true">
         <attribute-overrides>

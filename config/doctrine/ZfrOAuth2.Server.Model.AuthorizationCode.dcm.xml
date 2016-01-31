@@ -3,8 +3,8 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="ZfrOAuth2\Server\Doctrine\Entity\AuthorizationCode"
-            repository-class="ZfrOAuth2\Server\Doctrine\Repository\AuthorizationCodeRepository"
+    <entity name="ZfrOAuth2\Server\Model\AuthorizationCode"
+            repository-class="ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface"
             table="oauth_authorization_codes"
             read-only="true">
         <field name="redirectUri" column="redirect_uri" type="string" length="1000"/>

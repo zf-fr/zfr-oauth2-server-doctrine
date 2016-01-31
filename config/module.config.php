@@ -17,15 +17,34 @@
  */
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory;
 use ZfrOAuth2\Server\Model\TokenOwnerInterface;
+use ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface;
+use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
+use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
+use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
+use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
 
 return [
     'dependencies' => [
         'factories' => [
             /**
+             * Repositories
+             */
+            AccessTokenRepositoryInterface::class       => AccessTokenRepositoryFactory::class,
+            RefreshTokenRepositoryInterface::class      => RefreshTokenRepositoryFactory::class,
+            AuthorizationCodeRepositoryInterface::class => AuthorizationCodeRepositoryFactory::class,
+            ClientRepositoryInterface::class            => ClientRepositoryFactory::class,
+            ScopeRepositoryInterface::class             => ScopeRepositoryFactory::class,
+
+            /**
              * Utils
              */
-            ManagerRegistry::class => My\ManagerRegistryFactory::class,
+            ManagerRegistry::class                                                   => My\ManagerRegistryFactory::class,
         ],
     ],
 
@@ -48,7 +67,7 @@ return [
             ],
             'orm_default'                       => [
                 'drivers' => [
-                    'ZfrOAuth2\Server\Doctrine\Entity' => 'zfr_oauth2_server_doctrine_driver',
+                    'ZfrOAuth2\Server\Model' => 'zfr_oauth2_server_doctrine_driver',
                 ],
             ],
         ],
