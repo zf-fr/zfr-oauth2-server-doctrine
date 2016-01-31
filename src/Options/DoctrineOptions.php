@@ -16,24 +16,61 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2\Server\Doctrine\Id;
-
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Id\AbstractIdGenerator;
+namespace ZfrOAuth2\Server\Doctrine\Options;
 
 /**
- * Generate a custom identifier for clients
+ * Options class
  *
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  */
-class ClientIdGenerator extends AbstractIdGenerator
+class DoctrineOptions
 {
+
     /**
-     * {@inheritDoc}
+     * @var string
      */
-    public function generate(EntityManager $em, $entity): string
+    private $tokenOwnerPkColumn = 'id';
+
+    /**
+     * Constructor
+     *
+     * @param  array|null $options
+     */
+    public function __construct($options = null)
     {
-        return uniqid();
+        if (null !== $options) {
+            $this->setFromArray($options);
+        }
     }
+
+    /**
+     * Set one or more configuration properties
+     *
+     * @param  array $options
+     */
+    public function setFromArray(array $options)
+    {
+        foreach ($options as $key => $value) {
+            $setter = 'set' . str_replace('_', '', $key);
+            $this->{$setter}($value);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTokenOwnerPkColumn(): string
+    {
+        return $this->tokenOwnerPkColumn;
+    }
+
+    /**
+     * @param string $tokenOwnerPkColumn
+     */
+    public function setTokenOwnerPkColumn(string $tokenOwnerPkColumn)
+    {
+        $this->tokenOwnerPkColumn = $tokenOwnerPkColumn;
+    }
+
 }

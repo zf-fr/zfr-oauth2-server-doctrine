@@ -27,8 +27,6 @@ use ZfrOAuth2\Server\Doctrine\Repository;
 
 /**
  * Class RefreshTokenRepositoryFactory
- *
- * @todo implement DoctrineOptions to get doctrine manager name
  */
 class RefreshTokenRepositoryFactory
 {
@@ -37,14 +35,8 @@ class RefreshTokenRepositoryFactory
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);
 
-//        /** @var DoctrineOptions $doctrineOptions */
-//        $doctrineOptions = $container->get(DoctrineOptions::class);
-//
-//        /** @var ObjectManager $objectManager */
-//        $objectManager = $managerRegistry->getManager($doctrineOptions->getObjectManager() ?: null);
-
         /** @var ObjectManager $objectManager */
-        $objectManager = $managerRegistry->getManager('orm_default');
+        $objectManager = $managerRegistry->getManagerForClass(RefreshToken::class);
 
         /** @var ClassMetadata $meta */
         $meta = $objectManager->getClassMetadata(RefreshToken::class);

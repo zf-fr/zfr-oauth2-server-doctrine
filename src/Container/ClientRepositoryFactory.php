@@ -27,8 +27,6 @@ use ZfrOAuth2\Server\Doctrine\Repository;
 
 /**
  * Class ClientRepositoryFactory
- *
- * @todo implement DoctrineOptions to get doctrine manager name
  */
 class ClientRepositoryFactory
 {
@@ -37,14 +35,8 @@ class ClientRepositoryFactory
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);
 
-//        /** @var DoctrineOptions $doctrineOptions */
-//        $doctrineOptions = $container->get(DoctrineOptions::class);
-//
-//        /** @var ObjectManager $objectManager */
-//        $objectManager = $managerRegistry->getManager($doctrineOptions->getObjectManager() ?: null);
-
         /** @var ObjectManager $objectManager */
-        $objectManager = $managerRegistry->getManager('orm_default');
+        $objectManager = $managerRegistry->getManagerForClass(Client::class);
 
         /** @var ClassMetadata $meta */
         $meta = $objectManager->getClassMetadata(Client::class);

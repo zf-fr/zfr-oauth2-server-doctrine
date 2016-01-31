@@ -6,11 +6,7 @@
     <entity name="ZfrOAuth2\Server\Model\Client"
             repository-class="ZfrOAuth2\Server\Repository\ClientRepositoryInterface"
             table="oauth_clients">
-        <id name="id" type="string" length="60">
-            <generator strategy="CUSTOM"/>
-            <custom-id-generator class="ZfrOAuth2\Server\Doctrine\Id\ClientIdGenerator"/>
-        </id>
-
+        <id name="id" type="string" length="60"/>
         <field name="secret" type="string" length="60"/>
         <field name="redirectUris" column="redirect_uris" type="json_array"/>
     </entity>

@@ -16,24 +16,26 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2Test\Server\Doctrine\Id;
+namespace ZfrOAuth2\Server\Doctrine\Container;
 
-use Doctrine\ORM\EntityManager;
-use ZfrOAuth2\Server\Doctrine\Id\ClientIdGenerator;
+use Interop\Container\ContainerInterface;
+use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
 /**
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
- * @covers \ZfrOAuth2\Server\Doctrine\Id\ClientIdGenerator
  */
-class ClientIdGeneratorTest extends \PHPUnit_Framework_TestCase
+class DoctrineOptionsFactory
 {
-    public function testCanGenerateClientId()
+    /**
+     * @param ContainerInterface $container
+     * @return DoctrineOptions
+     */
+    public function __invoke(ContainerInterface $container): DoctrineOptions
     {
-        $generator = new ClientIdGenerator();
-        $id        = $generator->generate($this->getMock(EntityManager::class, [], [], '', false), new \stdClass());
+        $config  = $container->get('config');
+        $options = $config['zfr_oauth2_server_doctrine'] ?? [];
 
-        $this->assertEquals(13, strlen($id));
+        return new DoctrineOptions($options);
     }
 }

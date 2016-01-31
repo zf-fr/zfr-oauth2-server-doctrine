@@ -16,31 +16,31 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2\Server\Doctrine\Container;
+namespace ZfrOAuth2Test\Server\Doctrine\Options;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
-use Interop\Container\ContainerInterface;
-use ZfrOAuth2\Server\Model\AccessToken;
-use ZfrOAuth2\Server\Doctrine\Repository;
+use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
 /**
- * Class AccessTokenRepositoryFactory
+ * @author  Michaël Gallego <mic.gallego@gmail.com>
+ * @licence MIT
+ *
+ * @covers  ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
  */
-class AccessTokenRepositoryFactory
+class DoctrineOptionsTest extends \PHPUnit_Framework_TestCase
 {
-    public function __invoke(ContainerInterface $container)
+    public function testDefaults()
     {
-        /** @var ManagerRegistry $managerRegistry */
-        $managerRegistry = $container->get(ManagerRegistry::class);
+        $options = new DoctrineOptions();
 
-        /** @var ObjectManager $objectManager */
-        $objectManager = $managerRegistry->getManagerForClass(AccessToken::class);
+        $this->assertEquals('id', $options->getTokenOwnerPkColumn());
+    }
 
-        /** @var ClassMetadata $meta */
-        $meta = $objectManager->getClassMetadata(AccessToken::class);
+    public function testSettersAndGetters()
+    {
+        $options = new DoctrineOptions([
+            'token_owner_pk_column' => 'user_id',
+        ]);
 
-        return new Repository\AccessTokenRepository($objectManager, $meta);
+        $this->assertEquals('user_id', $options->getTokenOwnerPkColumn());
     }
 }

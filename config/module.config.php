@@ -16,12 +16,15 @@
  * and is licensed under the MIT license.
  */
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
 use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory;
 use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 use ZfrOAuth2\Server\Model\TokenOwnerInterface;
 use ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface;
 use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
@@ -44,7 +47,8 @@ return [
             /**
              * Utils
              */
-            ManagerRegistry::class                                                   => My\ManagerRegistryFactory::class,
+            DoctrineOptions::class                      => DoctrineOptionsFactory::class,
+            ManagerRegistry::class                      => My\ManagerRegistryFactory::class,
         ],
     ],
 
@@ -93,8 +97,8 @@ return [
 
     'zfr_oauth2_server_doctrine' => [
         /**
-         * Doctrine object manager key
+         *
          */
-        // 'object_manager' => 'orm_default',
+        // 'token_owner_pk_column' => 'id',
     ],
 ];

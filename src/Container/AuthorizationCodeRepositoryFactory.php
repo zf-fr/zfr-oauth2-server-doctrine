@@ -27,8 +27,6 @@ use ZfrOAuth2\Server\Doctrine\Repository;
 
 /**
  * Class AuthorizationCodeRepositoryFactory
- *
- * @todo implement DoctrineOptions to get doctrine manager name
  */
 class AuthorizationCodeRepositoryFactory
 {
@@ -37,14 +35,8 @@ class AuthorizationCodeRepositoryFactory
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);
 
-//        /** @var DoctrineOptions $doctrineOptions */
-//        $doctrineOptions = $container->get(DoctrineOptions::class);
-//
-//        /** @var ObjectManager $objectManager */
-//        $objectManager = $managerRegistry->getManager($doctrineOptions->getObjectManager() ?: null);
-
         /** @var ObjectManager $objectManager */
-        $objectManager = $managerRegistry->getManager('orm_default');
+        $objectManager = $managerRegistry->getManagerForClass(AuthorizationCode::class);
 
         /** @var ClassMetadata $meta */
         $meta = $objectManager->getClassMetadata(AuthorizationCode::class);
