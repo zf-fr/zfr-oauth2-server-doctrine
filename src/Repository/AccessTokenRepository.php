@@ -59,6 +59,6 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
      */
     public function tokenExists(string $token): bool
     {
-        return (bool) $this->find($token);
+        return $this->find($token) !== null;
     }
 }

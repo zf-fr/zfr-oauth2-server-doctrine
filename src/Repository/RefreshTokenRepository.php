@@ -58,6 +58,6 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
      */
     public function tokenExists(string $token): bool
     {
-        return (bool) $this->find($token);
+        return $this->find($token) !== null;
     }
 }

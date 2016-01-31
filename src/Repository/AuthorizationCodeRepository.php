@@ -58,6 +58,6 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
      */
     public function tokenExists(string $token): bool
     {
-        return (bool) $this->find($token);
+        return $this->find($token) !== null;
     }
 }
