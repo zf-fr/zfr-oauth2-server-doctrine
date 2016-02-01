@@ -15,15 +15,9 @@
       "homepage": "http://www.michaelgallego.fr"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:basz/zfr-oauth2-server.git"
-    }
-  ],
   "require": {
     "php": ">=7.0",
-    "zfr/zfr-oauth2-server": "dev-refactoring-middleware",
+    "zfr/zfr-oauth2-server": "dev-master",
     "doctrine/orm": "~2.5",
     "container-interop/container-interop": "^1.1"
   },
