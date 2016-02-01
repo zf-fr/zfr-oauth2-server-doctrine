@@ -31,6 +31,8 @@ use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
 use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
 use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
 use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
+use ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory;
+use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 
 return [
     'dependencies' => [
@@ -47,6 +49,7 @@ return [
             /**
              * Utils
              */
+            TokenOwnerPkColumnSubscriber::class         => TokenOwnerPkColumnSubscriberFactory::class,
             DoctrineOptions::class                      => DoctrineOptionsFactory::class,
             ManagerRegistry::class                      => My\ManagerRegistryFactory::class,
         ],
@@ -91,6 +94,14 @@ return [
 //                        ]
 //                    ],
 //                ],
+            ],
+        ],
+
+        'eventmanager' => [
+            'orm_default' => [
+                'subscribers' => [
+                    TokenOwnerPkColumnSubscriber::class,
+                ]
             ],
         ],
     ],
