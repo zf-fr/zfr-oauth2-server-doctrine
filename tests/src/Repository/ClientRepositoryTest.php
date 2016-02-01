@@ -89,4 +89,26 @@ class ClientRepositoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(null, $returned);
     }
+
+    public function testIdExistsTrue()
+    {
+        $this->em->expects($this->at(0))
+            ->method('find')
+            ->willReturn($this->getMock(Client::class, [], [], '', false));
+
+        $returned = $this->repository->idExists('id');
+
+        $this->assertTrue($returned);
+    }
+
+    public function testIdExistsFalse()
+    {
+        $this->em->expects($this->at(0))
+            ->method('find')
+            ->willReturn(null);
+
+        $returned = $this->repository->idExists('id');
+
+        $this->assertFalse($returned);
+    }
 }
