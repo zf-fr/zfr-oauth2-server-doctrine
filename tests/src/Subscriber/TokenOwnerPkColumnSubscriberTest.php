@@ -30,7 +30,7 @@ use ZfrOAuth2\Server\Model\AbstractToken;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber
+ * @covers  \ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber
  */
 class TokenOwnerPkColumnSubscriberTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,7 +66,7 @@ class TokenOwnerPkColumnSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testLoadClassMetadata($className, $columnName)
     {
         $eventsArgs    = $this->createMock(LoadClassMetadataEventArgs::class, [], [], '', false);
-        $classMetaData = $this->createMock(ClassMetadataInfo::class, [], [], '', false);;
+        $classMetaData = $this->createMock(ClassMetadataInfo::class, [], [], '', false);
 
         $classMetaData->expects($this->once())
             ->method('getName')
@@ -83,8 +83,10 @@ class TokenOwnerPkColumnSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->subscriber->loadClassMetadata($eventsArgs);
 
         if ($columnName) {
-            $this->assertEquals($columnName,
-                $classMetaData->associationMappings['owner']['joinColumns'][0]['referencedColumnName']);
+            $this->assertEquals(
+                $columnName,
+                $classMetaData->associationMappings['owner']['joinColumns'][0]['referencedColumnName']
+            );
         }
     }
 
