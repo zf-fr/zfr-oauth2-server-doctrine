@@ -13,6 +13,11 @@
       "name": "Michaël Gallego",
       "email": "mic.gallego@gmail.com",
       "homepage": "http://www.michaelgallego.fr"
+    },
+    {
+      "name": "Bas Kamer",
+      "email": "baskamer@gmail.com",
+      "homepage": "https://baskamer.nl"
     }
   ],
   "require": {
