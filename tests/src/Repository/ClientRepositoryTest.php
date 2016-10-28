@@ -52,8 +52,8 @@ class ClientRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->em         = $this->getMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->getMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
+        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
         $this->repository = new ClientRepository($this->em, $this->meta);
     }
 
@@ -64,7 +64,7 @@ class ClientRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testSave()
     {
-        $client = $this->getMock(Client::class, [], [], '', false);
+        $client = $this->createMock(Client::class, [], [], '', false);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -94,7 +94,7 @@ class ClientRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->em->expects($this->at(0))
             ->method('find')
-            ->willReturn($this->getMock(Client::class, [], [], '', false));
+            ->willReturn($this->createMock(Client::class, [], [], '', false));
 
         $returned = $this->repository->idExists('id');
 

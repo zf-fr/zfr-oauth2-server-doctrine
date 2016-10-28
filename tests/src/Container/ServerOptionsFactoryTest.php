@@ -32,7 +32,7 @@ class DoctrineOptionsFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanCreateFromFactory()
     {
-        $container = $this->getMock(ContainerInterface::class);
+        $container = $this->createMock(ContainerInterface::class);
 
         $container->expects($this->at(0))
             ->method('get')

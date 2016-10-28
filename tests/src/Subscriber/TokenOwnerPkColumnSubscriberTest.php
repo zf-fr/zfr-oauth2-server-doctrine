@@ -65,8 +65,8 @@ class TokenOwnerPkColumnSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadClassMetadata($className, $columnName)
     {
-        $eventsArgs    = $this->getMock(LoadClassMetadataEventArgs::class, [], [], '', false);
-        $classMetaData = $this->getMock(ClassMetadataInfo::class, [], [], '', false);;
+        $eventsArgs    = $this->createMock(LoadClassMetadataEventArgs::class, [], [], '', false);
+        $classMetaData = $this->createMock(ClassMetadataInfo::class, [], [], '', false);;
 
         $classMetaData->expects($this->once())
             ->method('getName')
