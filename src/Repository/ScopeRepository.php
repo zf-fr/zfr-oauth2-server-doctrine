@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,7 +27,7 @@ use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
 class ScopeRepository extends EntityRepository implements ScopeRepositoryInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(Scope $scope): Scope
     {
@@ -36,7 +38,7 @@ class ScopeRepository extends EntityRepository implements ScopeRepositoryInterfa
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findAllScopes(): array
     {
@@ -44,7 +46,7 @@ class ScopeRepository extends EntityRepository implements ScopeRepositoryInterfa
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findDefaultScopes(): array
     {

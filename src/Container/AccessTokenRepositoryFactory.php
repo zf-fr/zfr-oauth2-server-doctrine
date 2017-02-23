@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -22,8 +24,8 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Interop\Container\ContainerInterface;
-use ZfrOAuth2\Server\Model\AccessToken;
 use ZfrOAuth2\Server\Doctrine\Repository;
+use ZfrOAuth2\Server\Model\AccessToken;
 
 /**
  * Class AccessTokenRepositoryFactory

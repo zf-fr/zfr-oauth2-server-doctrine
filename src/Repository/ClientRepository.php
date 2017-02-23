@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,7 +27,7 @@ use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
 class ClientRepository extends EntityRepository implements ClientRepositoryInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(Client $client): Client
     {
@@ -36,7 +38,7 @@ class ClientRepository extends EntityRepository implements ClientRepositoryInter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findById(string $id)
     {
@@ -44,7 +46,7 @@ class ClientRepository extends EntityRepository implements ClientRepositoryInter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function idExists(string $id): bool
     {

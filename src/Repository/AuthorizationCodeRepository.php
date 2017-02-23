@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +28,7 @@ use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
 class AuthorizationCodeRepository extends EntityRepository implements AuthorizationCodeRepositoryInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(AuthorizationCode $token): AuthorizationCode
     {
@@ -37,7 +39,7 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findByToken(string $token)
     {
@@ -45,7 +47,7 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteToken(AbstractToken $token)
     {
@@ -54,7 +56,7 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function tokenExists(string $token): bool
     {

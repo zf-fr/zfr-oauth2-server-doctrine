@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -16,23 +18,9 @@
  * and is licensed under the MIT license.
  */
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
-use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory;
-use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
-use ZfrOAuth2\Server\Model\TokenOwnerInterface;
-use ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface;
-use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
-use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
-use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
-use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
-use ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
+use ZfrOAuth2\Server\Model\TokenOwnerInterface;
 
 return [
     'doctrine' => [
@@ -43,7 +31,7 @@ return [
         'entity_resolver' => [
             'orm_default' => [
                 'resolvers' => [
-                    TokenOwnerInterface::class => My\Entity\User::class
+                    TokenOwnerInterface::class => My\Entity\User::class,
                 ],
             ],
         ],
@@ -81,15 +69,15 @@ return [
             'orm_default' => [
                 'subscribers' => [
                     TokenOwnerPkColumnSubscriber::class,
-                ]
+                ],
             ],
         ],
     ],
 
     'zfr_oauth2_server_doctrine' => [
-        /**
-         *
-         */
+    /**
+     *
+     */
         // 'token_owner_pk_column' => 'id',
     ],
 ];

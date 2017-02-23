@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,7 +22,6 @@ namespace ZfrOAuth2\Server\Doctrine\Container;
 
 use Interop\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
-use ZfrOAuth2\Server\Doctrine\Repository;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 
 /**

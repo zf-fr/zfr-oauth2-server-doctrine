@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +28,7 @@ use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
 class RefreshTokenRepository extends EntityRepository implements RefreshTokenRepositoryInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(RefreshToken $token): RefreshToken
     {
@@ -37,7 +39,7 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findByToken(string $token)
     {
@@ -45,7 +47,7 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteToken(AbstractToken $token)
     {
@@ -54,7 +56,7 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function tokenExists(string $token): bool
     {
