@@ -21,6 +21,7 @@ namespace ZfrOAuth2Test\Server\Container;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository;
 use ZfrOAuth2\Server\Model\Scope;
@@ -30,7 +31,7 @@ use ZfrOAuth2\Server\Model\Scope;
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory
  */
-class ScopeRepositoryFactoryTest extends \PHPUnit_Framework_TestCase
+class ScopeRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

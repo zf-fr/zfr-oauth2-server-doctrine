@@ -20,6 +20,7 @@ namespace ZfrOAuth2Test\Server\Doctrine\Container;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
@@ -32,7 +33,7 @@ use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
  */
-class RefreshTokenRepositoryTest extends \PHPUnit_Framework_TestCase
+class RefreshTokenRepositoryTest extends TestCase
 {
     /**
      * @var EntityManager|PHPUnit_Framework_MockObject_MockObject

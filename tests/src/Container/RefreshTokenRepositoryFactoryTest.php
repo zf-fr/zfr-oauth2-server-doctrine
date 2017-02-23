@@ -21,6 +21,7 @@ namespace ZfrOAuth2Test\Server\Container;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\RefreshToken;
@@ -30,7 +31,7 @@ use ZfrOAuth2\Server\Model\RefreshToken;
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory
  */
-class RefreshTokenRepositoryFactoryTest extends \PHPUnit_Framework_TestCase
+class RefreshTokenRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

@@ -19,6 +19,7 @@
 namespace ZfrOAuth2Test\Server\Doctrine\Container;
 
 use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
@@ -28,7 +29,7 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
  */
-class DoctrineOptionsFactoryTest extends \PHPUnit_Framework_TestCase
+class DoctrineOptionsFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

@@ -22,6 +22,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Persisters\Entity\EntityPersister;
 use Doctrine\ORM\UnitOfWork;
+use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository;
 use ZfrOAuth2\Server\Model\Scope;
@@ -33,7 +34,7 @@ use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository
  */
-class ScopeRepositoryTest extends \PHPUnit_Framework_TestCase
+class ScopeRepositoryTest extends TestCase
 {
     /**
      * @var EntityManager|PHPUnit_Framework_MockObject_MockObject
