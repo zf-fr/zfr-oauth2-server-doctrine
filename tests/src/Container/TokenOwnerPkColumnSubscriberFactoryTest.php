@@ -32,12 +32,12 @@ class TokenOwnerPkColumnSubscriberFactoryTest extends \PHPUnit_Framework_TestCas
 {
     public function testCanCreateFromFactory()
     {
-        $container       = $this->getMock(ContainerInterface::class);
+        $container       = $this->createMock(ContainerInterface::class);
 
         $container->expects($this->at(0))
             ->method('get')
             ->with(DoctrineOptions::class)
-            ->willReturn($this->getMock(DoctrineOptions::class));
+            ->willReturn($this->createMock(DoctrineOptions::class));
 
         $factory = new TokenOwnerPkColumnSubscriberFactory();
         $service = $factory($container);

@@ -52,8 +52,8 @@ class ScopeRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->em         = $this->getMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->getMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
+        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
         $this->repository = new ScopeRepository($this->em, $this->meta);
     }
 
@@ -64,7 +64,7 @@ class ScopeRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testSave()
     {
-        $scope = $this->getMock(Scope::class, [], [], '', false);
+        $scope = $this->createMock(Scope::class, [], [], '', false);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -81,8 +81,8 @@ class ScopeRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testFindAllScopes()
     {
-        $unitOfWork = $this->getMock(UnitOfWork::class, [], [], '', false);
-        $persister = $this->getMock(EntityPersister::class, [], [], '', false);
+        $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
+        $persister = $this->createMock(EntityPersister::class, [], [], '', false);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')
@@ -103,8 +103,8 @@ class ScopeRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testFindDefaultScopes()
     {
-        $unitOfWork = $this->getMock(UnitOfWork::class, [], [], '', false);
-        $persister = $this->getMock(EntityPersister::class, [], [], '', false);
+        $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
+        $persister = $this->createMock(EntityPersister::class, [], [], '', false);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')

@@ -34,14 +34,14 @@ class AuthorizationCodeRepositoryFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanCreateFromFactory()
     {
-        $container       = $this->getMock(ContainerInterface::class);
-        $objectManager   = $this->getMock(ObjectManager::class);
-        $managerRegistry = $this->getMock(ManagerRegistry::class, [], [], '', false);
+        $container       = $this->createMock(ContainerInterface::class);
+        $objectManager   = $this->createMock(ObjectManager::class);
+        $managerRegistry = $this->createMock(ManagerRegistry::class, [], [], '', false);
 
         $objectManager->expects($this->at(0))
             ->method('getClassMetadata')
             ->with(AuthorizationCode::class)
-            ->willReturn($this->getMock(\Doctrine\ORM\Mapping\ClassMetadata::class, [], [], '', false));
+            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class, [], [], '', false));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')

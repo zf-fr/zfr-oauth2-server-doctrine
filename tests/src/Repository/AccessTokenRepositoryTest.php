@@ -51,8 +51,8 @@ class AccessTokenRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->em         = $this->getMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->getMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
+        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
         $this->repository = new AccessTokenRepository($this->em, $this->meta);
     }
 
@@ -63,7 +63,7 @@ class AccessTokenRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testSave()
     {
-        $token = $this->getMock(AccessToken::class, [], [], '', false);
+        $token = $this->createMock(AccessToken::class, [], [], '', false);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -91,7 +91,7 @@ class AccessTokenRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteToken()
     {
-        $token = $this->getMock(AbstractToken::class, [], [], '', false);
+        $token = $this->createMock(AbstractToken::class, [], [], '', false);
 
         $this->em->expects($this->at(0))
             ->method('remove')
@@ -108,7 +108,7 @@ class AccessTokenRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->em->expects($this->at(0))
             ->method('find')
-            ->willReturn($this->getMock(AccessToken::class, [], [], '', false));
+            ->willReturn($this->createMock(AccessToken::class, [], [], '', false));
 
         $returned = $this->repository->tokenExists('token');
 
