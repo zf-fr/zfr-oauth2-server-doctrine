@@ -1,6 +1,4 @@
 <?php
-
-declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -23,9 +21,9 @@ namespace ZfrOAuth2\Server\Doctrine\Container;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
-use Interop\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Repository;
+use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Model\Client;
+use ZfrOAuth2\Server\Doctrine\Repository;
 
 /**
  * Class ClientRepositoryFactory

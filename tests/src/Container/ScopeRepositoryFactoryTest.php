@@ -22,7 +22,7 @@ namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Container\ScopeRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository;

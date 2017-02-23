@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2\Server\Doctrine\Container;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 
