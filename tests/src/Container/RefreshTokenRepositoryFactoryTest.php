@@ -22,8 +22,8 @@ namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
-use Psr\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\RefreshToken;
