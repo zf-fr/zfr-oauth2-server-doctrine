@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace ZfrOAuth2\Server\Doctrine\Subscriber;
 
 use Doctrine\Common\EventSubscriber as EventSubscriberInterface;
@@ -25,7 +26,7 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSubscribedEvents()
     {
@@ -42,7 +43,7 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
         /** @var ClassMetadataInfo $metadata */
         $metadata = $eventArgs->getClassMetadata();
 
-        if ($metadata->getName() != AbstractToken::class) {
+        if ($metadata->getName() !== AbstractToken::class) {
             return;
         }
 

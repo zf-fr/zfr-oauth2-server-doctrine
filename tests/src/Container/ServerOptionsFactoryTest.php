@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +31,7 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
  */
-class DoctrineOptionsFactoryTest extends TestCase
+class ServerOptionsFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

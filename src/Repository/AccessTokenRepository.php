@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,7 +20,6 @@
 
 namespace ZfrOAuth2\Server\Doctrine\Repository;
 
-use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
 use ZfrOAuth2\Server\Model\AccessToken;
@@ -27,7 +28,7 @@ use ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface;
 class AccessTokenRepository extends EntityRepository implements AccessTokenRepositoryInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(AccessToken $token): AccessToken
     {
@@ -38,7 +39,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findByToken(string $token)
     {
@@ -46,7 +47,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteToken(AbstractToken $token)
     {
@@ -55,7 +56,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function tokenExists(string $token): bool
     {

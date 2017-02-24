@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -83,7 +85,7 @@ class ScopeRepositoryTest extends TestCase
     public function testFindAllScopes()
     {
         $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
-        $persister = $this->createMock(EntityPersister::class, [], [], '', false);
+        $persister  = $this->createMock(EntityPersister::class, [], [], '', false);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')
@@ -105,7 +107,7 @@ class ScopeRepositoryTest extends TestCase
     public function testFindDefaultScopes()
     {
         $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
-        $persister = $this->createMock(EntityPersister::class, [], [], '', false);
+        $persister  = $this->createMock(EntityPersister::class, [], [], '', false);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')
