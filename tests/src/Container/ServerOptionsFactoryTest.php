@@ -31,7 +31,7 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
  */
-class DoctrineOptionsFactoryTest extends TestCase
+class ServerOptionsFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {
