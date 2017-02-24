@@ -19,6 +19,7 @@
 namespace ZfrOAuth2Test\Server\Container;
 
 use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
@@ -28,7 +29,7 @@ use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory
  */
-class TokenOwnerPkColumnSubscriberFactoryTest extends \PHPUnit_Framework_TestCase
+class TokenOwnerPkColumnSubscriberFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

@@ -20,6 +20,7 @@ namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
+use PHPUnit\Framework\TestCase;
 use Interop\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
@@ -30,7 +31,7 @@ use ZfrOAuth2\Server\Model\AccessToken;
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory
  */
-class AccessTokenRepositoryFactoryTest extends \PHPUnit_Framework_TestCase
+class AccessTokenRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory()
     {

@@ -22,6 +22,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Persisters\Entity\EntityPersister;
 use Doctrine\ORM\UnitOfWork;
+use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\ClientRepository;
 use ZfrOAuth2\Server\Model\Client;
@@ -33,7 +34,7 @@ use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Repository\ClientRepository
  */
-class ClientRepositoryTest extends \PHPUnit_Framework_TestCase
+class ClientRepositoryTest extends TestCase
 {
     /**
      * @var EntityManager|PHPUnit_Framework_MockObject_MockObject

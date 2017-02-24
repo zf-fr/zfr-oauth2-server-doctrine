@@ -22,6 +22,7 @@ use Doctrine\Common\EventSubscriber as EventSubscriberInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 use ZfrOAuth2\Server\Model\AbstractToken;
@@ -32,7 +33,7 @@ use ZfrOAuth2\Server\Model\AbstractToken;
  *
  * @covers  \ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber
  */
-class TokenOwnerPkColumnSubscriberTest extends \PHPUnit_Framework_TestCase
+class TokenOwnerPkColumnSubscriberTest extends TestCase
 {
     /**
      * @var DoctrineOptions

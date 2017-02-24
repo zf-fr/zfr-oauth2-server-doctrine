@@ -18,6 +18,7 @@
 
 namespace ZfrOAuth2Test\Server\Doctrine\Options;
 
+use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
 /**
@@ -26,7 +27,7 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  *
  * @covers  ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
  */
-class DoctrineOptionsTest extends \PHPUnit_Framework_TestCase
+class DoctrineOptionsTest extends TestCase
 {
     public function testDefaults()
     {
