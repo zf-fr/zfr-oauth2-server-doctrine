@@ -60,7 +60,7 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
     /**
      * {@inheritdoc}
      */
-    public function purgeExpiredTokens(): void
+    public function purgeExpiredTokens()
     {
         $this->_em->createQueryBuilder()
             ->delete(RefreshToken::class, 'token')

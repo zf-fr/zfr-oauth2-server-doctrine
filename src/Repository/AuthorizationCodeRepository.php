@@ -60,7 +60,7 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
     /**
      * {@inheritdoc}
      */
-    public function purgeExpiredTokens(): void
+    public function purgeExpiredTokens()
     {
         $this->_em->createQueryBuilder()
             ->delete(AuthorizationCode::class, 'token')

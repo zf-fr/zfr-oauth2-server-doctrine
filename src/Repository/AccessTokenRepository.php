@@ -60,7 +60,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     /**
      * {@inheritdoc}
      */
-    public function purgeExpiredTokens(): void
+    public function purgeExpiredTokens()
     {
         $this->_em->createQueryBuilder()
             ->delete(AccessToken::class, 'token')
