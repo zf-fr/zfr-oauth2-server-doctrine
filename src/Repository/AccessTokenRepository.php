@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2\Server\Doctrine\Repository;
 
+use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
 use ZfrOAuth2\Server\Model\AccessToken;
@@ -53,6 +55,19 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     {
         $this->_em->remove($token);
         $this->_em->flush($token);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function purgeExpiredTokens(): void
+    {
+        $this->_em->createQueryBuilder()
+            ->delete(AccessToken::class, 'token')
+            ->where('token.expiresAt < :now')
+            ->setParameter('now', new DateTime('now', new DateTimeZone('UTC')))
+            ->getQuery()
+            ->execute();
     }
 
     /**
