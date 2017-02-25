@@ -20,8 +20,10 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2Test\Server\Doctrine\Container;
 
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
@@ -105,6 +107,38 @@ class RefreshTokenRepositoryTest extends TestCase
             ->with($token);
 
         $this->repository->deleteToken($token);
+    }
+
+    public function testPurgeExpired()
+    {
+        $qb = $this->createMock(QueryBuilder::class);
+        $q  = $this->createMock(AbstractQuery::class);
+        $this->em->expects($this->at(0))
+            ->method('createQueryBuilder')
+            ->willReturn($qb);
+
+        $qb->expects($this->at(0))
+            ->method('delete')
+            ->with(RefreshToken::class, 'token')
+            ->willReturn($qb);
+
+        $qb->expects($this->at(1))
+            ->method('where')
+            ->with('token.expiresAt < :now')
+            ->willReturn($qb);
+
+        $qb->expects($this->at(2))
+            ->method('setParameter')
+            ->willReturn($qb);
+
+        $qb->expects($this->at(3))
+            ->method('getQuery')
+            ->willReturn($q);
+
+        $q->expects($this->once())
+            ->method('execute');
+
+        $this->repository->purgeExpiredTokens();
     }
 
     public function testTokenExistsTrue()
