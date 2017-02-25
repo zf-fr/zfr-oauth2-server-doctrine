@@ -3,7 +3,7 @@ Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-serv
 
 [![Build Status](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine.png)](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine)
 [![Latest Stable Version](https://poser.pugx.org/zfr/zfr-oauth2-server-doctrine/v/stable.png)](https://packagist.org/packages/zfr/zfr-oauth2-server-doctrine)
-[![Coverage Status](https://coveralls.io/repos/zf-fr/zfr-oauth2-server-doctrine/badge.png)](https://coveralls.io/r/zf-fr/zfr-oauth2-server-doctrine)
+[![Coverage Status](https://coveralls.io/repos/github/zf-fr/zfr-oauth2-server-doctrine/badge.svg?branch=master)](https://coveralls.io/github/zf-fr/zfr-oauth2-server-doctrine?branch=master)
 [![Total Downloads](https://poser.pugx.org/zfr/zfr-oauth2-server-doctrine/downloads.png)](https://packagist.org/packages/zfr/zfr-oauth2-server-doctrine)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/prolic/zfr-oauth2-server)
 
