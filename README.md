@@ -1,4 +1,5 @@
 # zfr-oauth2-server-doctrine
+
 Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-server)
 
 [![Build Status](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine.png)](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine)
@@ -18,10 +19,20 @@ Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-serv
 Installation is only officially supported using Composer:
 
 ```sh
-php composer.phar require zfr/zfr-oauth2-server-doctrine:^1.0
+php composer.phar require zfr/zfr-oauth2-server-doctrine:^0.1-beta
 ```
 
 ## Support
 
 - File issues at [https://github.com/zf-fr/zfr-oauth2-server-doctrine/issues](https://github.com/zf-fr/zfr-oauth2-server-doctrine/issues).
 - Say hello in our [gitter](https://gitter.im/prolic/zfr-oauth2-server) chat.
+
+
+## Configuration
+
+to be written
+
+## Second level cache
+
+Scope and tokens are marked cacheable to take advantage of Doctrine 2.5 ORM second level cache. However, you
+need to configure the regions yourself.
