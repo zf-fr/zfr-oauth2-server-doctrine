@@ -3,7 +3,7 @@
   <mapped-superclass name="ZfrOAuth2\Server\Model\AbstractToken">
     <cache usage="READ_ONLY" region="oauth_token_region"/>
     <id name="token" type="string" length="40"/>
-    <field name="expiresAt" type="datetime" nullable="false" column="expires_at"/>
+    <field name="expiresAt" type="datetimetz" nullable="false" column="expires_at"/>
     <field name="scopes" type="json_array" nullable="false"/>
     <many-to-one field="client" target-entity="ZfrOAuth2\Server\Model\Client">
       <join-columns>
