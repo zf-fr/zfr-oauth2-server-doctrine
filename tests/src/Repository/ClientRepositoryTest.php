@@ -22,8 +22,8 @@ namespace ZfrOAuth2Test\Server\Doctrine\Container;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\ClientRepository;
 use ZfrOAuth2\Server\Model\Client;
 use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
@@ -32,17 +32,17 @@ use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Repository\ClientRepository
+ * @covers  \ZfrOAuth2\Server\Doctrine\Repository\ClientRepository
  */
 class ClientRepositoryTest extends TestCase
 {
     /**
-     * @var EntityManager|PHPUnit_Framework_MockObject_MockObject
+     * @var EntityManager|MockObject
      */
     protected $em;
 
     /**
-     * @var ClassMetadata|PHPUnit_Framework_MockObject_MockObject
+     * @var ClassMetadata|MockObject
      */
     protected $meta;
 
@@ -51,21 +51,21 @@ class ClientRepositoryTest extends TestCase
      */
     protected $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class);
+        $this->meta       = $this->createMock(ClassMetadata::class);
         $this->repository = new ClientRepository($this->em, $this->meta);
     }
 
-    public function testHasInterface()
+    public function testHasInterface(): void
     {
         $this->assertInstanceOf(ClientRepositoryInterface::class, $this->repository);
     }
 
-    public function testSave()
+    public function testSave(): void
     {
-        $client = $this->createMock(Client::class, [], [], '', false);
+        $client = $this->createMock(Client::class);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -80,7 +80,7 @@ class ClientRepositoryTest extends TestCase
         $this->assertEquals($client, $returned);
     }
 
-    public function testFindById()
+    public function testFindById(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')
@@ -91,18 +91,18 @@ class ClientRepositoryTest extends TestCase
         $this->assertEquals(null, $returned);
     }
 
-    public function testIdExistsTrue()
+    public function testIdExistsTrue(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')
-            ->willReturn($this->createMock(Client::class, [], [], '', false));
+            ->willReturn($this->createMock(Client::class));
 
         $returned = $this->repository->idExists('id');
 
         $this->assertTrue($returned);
     }
 
-    public function testIdExistsFalse()
+    public function testIdExistsFalse(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')

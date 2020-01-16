@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
@@ -35,16 +35,16 @@ use ZfrOAuth2\Server\Model\AccessToken;
  */
 class AccessTokenRepositoryFactoryTest extends TestCase
 {
-    public function testCanCreateFromFactory()
+    public function testCanCreateFromFactory(): void
     {
         $container       = $this->createMock(ContainerInterface::class);
-        $objectManager   = $this->createMock(ObjectManager::class);
-        $managerRegistry = $this->createMock(ManagerRegistry::class, [], [], '', false);
+        $objectManager   = $this->createMock(EntityManagerInterface::class);
+        $managerRegistry = $this->createMock(ManagerRegistry::class);
 
         $objectManager->expects($this->at(0))
             ->method('getClassMetadata')
             ->with(AccessToken::class)
-            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class, [], [], '', false));
+            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')

@@ -32,7 +32,7 @@ use ZfrOAuth2\Server\Model\Scope;
  */
 class ScopeRepositoryFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): Repository\ScopeRepository
     {
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);

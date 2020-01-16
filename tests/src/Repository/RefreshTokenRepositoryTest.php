@@ -24,8 +24,8 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
 use ZfrOAuth2\Server\Model\RefreshToken;
@@ -35,17 +35,17 @@ use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
+ * @covers  \ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
  */
 class RefreshTokenRepositoryTest extends TestCase
 {
     /**
-     * @var EntityManager|PHPUnit_Framework_MockObject_MockObject
+     * @var EntityManager|MockObject
      */
     protected $em;
 
     /**
-     * @var ClassMetadata|PHPUnit_Framework_MockObject_MockObject
+     * @var ClassMetadata|MockObject
      */
     protected $meta;
 
@@ -54,21 +54,21 @@ class RefreshTokenRepositoryTest extends TestCase
      */
     protected $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class);
+        $this->meta       = $this->createMock(ClassMetadata::class);
         $this->repository = new RefreshTokenRepository($this->em, $this->meta);
     }
 
-    public function testHasInterface()
+    public function testHasInterface(): void
     {
         $this->assertInstanceOf(RefreshTokenRepositoryInterface::class, $this->repository);
     }
 
-    public function testSave()
+    public function testSave(): void
     {
-        $token = $this->createMock(RefreshToken::class, [], [], '', false);
+        $token = $this->createMock(RefreshToken::class);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -83,7 +83,7 @@ class RefreshTokenRepositoryTest extends TestCase
         $this->assertEquals($token, $returned);
     }
 
-    public function testFindByToken()
+    public function testFindByToken(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')
@@ -94,9 +94,9 @@ class RefreshTokenRepositoryTest extends TestCase
         $this->assertEquals(null, $returned);
     }
 
-    public function testDeleteToken()
+    public function testDeleteToken(): void
     {
-        $token = $this->createMock(AbstractToken::class, [], [], '', false);
+        $token = $this->createMock(AbstractToken::class);
 
         $this->em->expects($this->at(0))
             ->method('remove')
@@ -109,7 +109,7 @@ class RefreshTokenRepositoryTest extends TestCase
         $this->repository->deleteToken($token);
     }
 
-    public function testPurgeExpired()
+    public function testPurgeExpired(): void
     {
         $qb = $this->createMock(QueryBuilder::class);
         $q  = $this->createMock(AbstractQuery::class);
@@ -141,18 +141,18 @@ class RefreshTokenRepositoryTest extends TestCase
         $this->repository->purgeExpiredTokens();
     }
 
-    public function testTokenExistsTrue()
+    public function testTokenExistsTrue(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')
-            ->willReturn($this->createMock(RefreshToken::class, [], [], '', false));
+            ->willReturn($this->createMock(RefreshToken::class));
 
         $returned = $this->repository->tokenExists('token');
 
         $this->assertTrue($returned);
     }
 
-    public function testTokenExistsFalse()
+    public function testTokenExistsFalse(): void
     {
         $this->em->expects($this->at(0))
             ->method('find')

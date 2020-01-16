@@ -29,11 +29,11 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
  */
 class ServerOptionsFactoryTest extends TestCase
 {
-    public function testCanCreateFromFactory()
+    public function testCanCreateFromFactory(): void
     {
         $container = $this->createMock(ContainerInterface::class);
 

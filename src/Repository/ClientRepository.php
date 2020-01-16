@@ -40,7 +40,7 @@ class ClientRepository extends EntityRepository implements ClientRepositoryInter
     /**
      * {@inheritdoc}
      */
-    public function findById(string $id)
+    public function findById(string $id): ?object
     {
         return $this->find($id);
     }

@@ -28,7 +28,7 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return [
             Events::loadClassMetadata,
@@ -38,7 +38,7 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
     /**
      * @param LoadClassMetadataEventArgs $eventArgs
      */
-    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
+    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         /** @var ClassMetadataInfo $metadata */
         $metadata = $eventArgs->getClassMetadata();
@@ -47,7 +47,6 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $metadata->associationMappings['owner']['joinColumns'][0]['referencedColumnName'] =
-            $this->options->getTokenOwnerPkColumn();
+        $metadata->associationMappings['owner']['joinColumns'][0]['referencedColumnName'] = $this->options->getTokenOwnerPkColumn();
     }
 }

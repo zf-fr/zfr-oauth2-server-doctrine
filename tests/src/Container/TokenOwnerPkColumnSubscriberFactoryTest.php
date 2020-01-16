@@ -33,7 +33,7 @@ use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
  */
 class TokenOwnerPkColumnSubscriberFactoryTest extends TestCase
 {
-    public function testCanCreateFromFactory()
+    public function testCanCreateFromFactory(): void
     {
         $container       = $this->createMock(ContainerInterface::class);
 
