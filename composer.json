@@ -21,7 +21,7 @@
     }
   ],
   "require": {
-    "php": "^7.0",
+    "php": "^7.2",
     "zfr/zfr-oauth2-server": "^0.8-beta",
     "doctrine/orm": "^2.5",
     "psr/container": "^1.0",
