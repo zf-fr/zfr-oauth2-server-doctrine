@@ -32,7 +32,7 @@ use ZfrOAuth2\Server\Model\Client;
  */
 class ClientRepositoryFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): Repository\ClientRepository
     {
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);

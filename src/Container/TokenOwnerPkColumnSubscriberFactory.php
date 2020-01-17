@@ -29,7 +29,7 @@ use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
  */
 class TokenOwnerPkColumnSubscriberFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): TokenOwnerPkColumnSubscriber
     {
         /** @var DoctrineOptions $doctrineOptions */
         $doctrineOptions = $container->get(DoctrineOptions::class);

@@ -43,7 +43,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     /**
      * {@inheritdoc}
      */
-    public function findByToken(string $token)
+    public function findByToken(string $token): ?object
     {
         return $this->find($token);
     }
@@ -51,7 +51,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     /**
      * {@inheritdoc}
      */
-    public function deleteToken(AbstractToken $token)
+    public function deleteToken(AbstractToken $token): void
     {
         $this->_em->remove($token);
         $this->_em->flush($token);
@@ -60,7 +60,7 @@ class AccessTokenRepository extends EntityRepository implements AccessTokenRepos
     /**
      * {@inheritdoc}
      */
-    public function purgeExpiredTokens()
+    public function purgeExpiredTokens(): void
     {
         $this->_em->createQueryBuilder()
             ->delete(AccessToken::class, 'token')

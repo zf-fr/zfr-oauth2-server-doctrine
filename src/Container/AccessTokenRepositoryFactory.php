@@ -32,7 +32,7 @@ use ZfrOAuth2\Server\Model\AccessToken;
  */
 class AccessTokenRepositoryFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): Repository\AccessTokenRepository
     {
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);

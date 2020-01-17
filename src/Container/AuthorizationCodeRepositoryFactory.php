@@ -32,7 +32,7 @@ use ZfrOAuth2\Server\Model\AuthorizationCode;
  */
 class AuthorizationCodeRepositoryFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): Repository\AuthorizationCodeRepository
     {
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);

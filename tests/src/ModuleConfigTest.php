@@ -30,19 +30,19 @@ use ZfrOAuth2\Server\Doctrine\ModuleConfig;
  */
 class ModuleConfigTest extends TestCase
 {
-    public function testCanBeInvoked()
+    public function testCanBeInvoked(): void
     {
         $moduleConfig = new ModuleConfig();
 
         static::assertTrue(is_callable($moduleConfig));
     }
 
-    public function testGetArrayWith()
+    public function testGetArrayWith(): void
     {
         $moduleConfig = new ModuleConfig();
         $config       = $moduleConfig->__invoke();
 
-        $this->assertInternalType('array', $config);
+        $this->assertIsArray($config);
         $this->assertArrayHasKey('zfr_oauth2_server_doctrine', $config);
         $this->assertArrayHasKey('doctrine', $config);
         $this->assertArrayHasKey('dependencies', $config);

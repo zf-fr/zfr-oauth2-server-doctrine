@@ -27,18 +27,18 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
+ * @covers  \ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
  */
 class DoctrineOptionsTest extends TestCase
 {
-    public function testDefaults()
+    public function testDefaults(): void
     {
         $options = new DoctrineOptions();
 
         $this->assertEquals('id', $options->getTokenOwnerPkColumn());
     }
 
-    public function testSettersAndGetters()
+    public function testSettersAndGetters(): void
     {
         $options = new DoctrineOptions([
             'token_owner_pk_column' => 'user_id',

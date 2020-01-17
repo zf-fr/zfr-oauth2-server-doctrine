@@ -50,7 +50,7 @@ class DoctrineOptions
      *
      * @param  array $options
      */
-    public function setFromArray(array $options)
+    public function setFromArray(array $options): void
     {
         foreach ($options as $key => $value) {
             $setter = 'set' . str_replace('_', '', $key);
@@ -69,7 +69,7 @@ class DoctrineOptions
     /**
      * @param string $tokenOwnerPkColumn
      */
-    public function setTokenOwnerPkColumn(string $tokenOwnerPkColumn)
+    public function setTokenOwnerPkColumn(string $tokenOwnerPkColumn): void
     {
         $this->tokenOwnerPkColumn = $tokenOwnerPkColumn;
     }

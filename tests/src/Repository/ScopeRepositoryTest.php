@@ -24,8 +24,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Persisters\Entity\EntityPersister;
 use Doctrine\ORM\UnitOfWork;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 use ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository;
 use ZfrOAuth2\Server\Model\Scope;
 use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
@@ -34,17 +34,17 @@ use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository
+ * @covers  \ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository
  */
 class ScopeRepositoryTest extends TestCase
 {
     /**
-     * @var EntityManager|PHPUnit_Framework_MockObject_MockObject
+     * @var EntityManager|MockObject
      */
     protected $em;
 
     /**
-     * @var ClassMetadata|PHPUnit_Framework_MockObject_MockObject
+     * @var ClassMetadata|MockObject
      */
     protected $meta;
 
@@ -53,21 +53,21 @@ class ScopeRepositoryTest extends TestCase
      */
     protected $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->em         = $this->createMock(EntityManager::class, [], [], '', false);
-        $this->meta       = $this->createMock(ClassMetadata::class, [], [], '', false);
+        $this->em         = $this->createMock(EntityManager::class);
+        $this->meta       = $this->createMock(ClassMetadata::class);
         $this->repository = new ScopeRepository($this->em, $this->meta);
     }
 
-    public function testHasInterface()
+    public function testHasInterface(): void
     {
         $this->assertInstanceOf(ScopeRepositoryInterface::class, $this->repository);
     }
 
-    public function testSave()
+    public function testSave(): void
     {
-        $scope = $this->createMock(Scope::class, [], [], '', false);
+        $scope = $this->createMock(Scope::class);
 
         $this->em->expects($this->at(0))
             ->method('persist')
@@ -82,10 +82,10 @@ class ScopeRepositoryTest extends TestCase
         $this->assertEquals($scope, $returned);
     }
 
-    public function testFindAllScopes()
+    public function testFindAllScopes(): void
     {
-        $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
-        $persister  = $this->createMock(EntityPersister::class, [], [], '', false);
+        $unitOfWork = $this->createMock(UnitOfWork::class);
+        $persister  = $this->createMock(EntityPersister::class);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')
@@ -104,10 +104,10 @@ class ScopeRepositoryTest extends TestCase
         $this->assertEquals([], $returned);
     }
 
-    public function testFindDefaultScopes()
+    public function testFindDefaultScopes(): void
     {
-        $unitOfWork = $this->createMock(UnitOfWork::class, [], [], '', false);
-        $persister  = $this->createMock(EntityPersister::class, [], [], '', false);
+        $unitOfWork = $this->createMock(UnitOfWork::class);
+        $persister  = $this->createMock(EntityPersister::class);
 
         $unitOfWork->expects($this->at(0))
             ->method('getEntityPersister')

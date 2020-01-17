@@ -47,18 +47,18 @@ class TokenOwnerPkColumnSubscriberTest extends TestCase
      */
     protected $subscriber;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->options    = new DoctrineOptions();
         $this->subscriber = new TokenOwnerPkColumnSubscriber($this->options);
     }
 
-    public function testHasInterface()
+    public function testHasInterface(): void
     {
         $this->assertInstanceOf(EventSubscriberInterface::class, $this->subscriber);
     }
 
-    public function testSubscribedEvents()
+    public function testSubscribedEvents(): void
     {
         $this->assertContains(Events::loadClassMetadata, $this->subscriber->getSubscribedEvents());
     }
@@ -66,10 +66,10 @@ class TokenOwnerPkColumnSubscriberTest extends TestCase
     /**
      * @dataProvider providerLoadClassMetadata
      */
-    public function testLoadClassMetadata($className, $columnName)
+    public function testLoadClassMetadata($className, $columnName): void
     {
-        $eventsArgs    = $this->createMock(LoadClassMetadataEventArgs::class, [], [], '', false);
-        $classMetaData = $this->createMock(ClassMetadataInfo::class, [], [], '', false);
+        $eventsArgs    = $this->createMock(LoadClassMetadataEventArgs::class);
+        $classMetaData = $this->createMock(ClassMetadataInfo::class);
 
         $classMetaData->expects($this->once())
             ->method('getName')
@@ -93,7 +93,7 @@ class TokenOwnerPkColumnSubscriberTest extends TestCase
         }
     }
 
-    public function providerLoadClassMetadata()
+    public function providerLoadClassMetadata(): array
     {
         return [
             [AbstractToken::class, 'user_id'],

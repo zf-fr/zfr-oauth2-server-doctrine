@@ -32,7 +32,7 @@ use ZfrOAuth2\Server\Model\RefreshToken;
  */
 class RefreshTokenRepositoryFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): Repository\RefreshTokenRepository
     {
         /** @var ManagerRegistry $managerRegistry */
         $managerRegistry = $container->get(ManagerRegistry::class);
