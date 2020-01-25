@@ -11,7 +11,7 @@ Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-serv
 
 ## Requirements
 
-- PHP 7.0 or higher
+- PHP 7.2 or higher
 - doctrine/orm ~2.5
 
 ## Installation
@@ -19,7 +19,7 @@ Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-serv
 Installation is only officially supported using Composer:
 
 ```sh
-php composer.phar require zfr/zfr-oauth2-server-doctrine:^0.1-beta
+php composer.phar require zfr/zfr-oauth2-server-doctrine:^0.2
 ```
 
 ## Support
