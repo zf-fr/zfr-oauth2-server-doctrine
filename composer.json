@@ -22,7 +22,7 @@
   ],
   "require": {
     "php": "^7.2",
-    "zfr/zfr-oauth2-server": "^0.8-beta",
+    "zfr/zfr-oauth2-server": "^0.9",
     "doctrine/orm": "^2.7",
     "psr/container": "^1.0",
     "roave/security-advisories": "dev-master"
@@ -44,7 +44,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.2-dev"
+      "dev-master": "0.3-dev"
     }
   }
 }
