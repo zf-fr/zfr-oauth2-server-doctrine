@@ -43,7 +43,7 @@ class RefreshTokenRepository extends EntityRepository implements RefreshTokenRep
     /**
      * {@inheritdoc}
      */
-    public function findByToken(string $token): ?object
+    public function findByToken(string $token): ?AbstractToken
     {
         return $this->find($token);
     }

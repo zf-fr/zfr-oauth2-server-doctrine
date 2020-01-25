@@ -43,7 +43,7 @@ class AuthorizationCodeRepository extends EntityRepository implements Authorizat
     /**
      * {@inheritdoc}
      */
-    public function findByToken(string $token): ?object
+    public function findByToken(string $token): ?AbstractToken
     {
         return $this->find($token);
     }
