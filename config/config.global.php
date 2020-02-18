@@ -38,7 +38,7 @@ return [
         'driver'          => [
             'zfr_oauth2_server_doctrine_driver' => [
                 'class' => XmlDriver::class,
-                'paths' => __DIR__ . '/doctrine',
+                'paths' => [__DIR__ . '/doctrine'],
             ],
             'orm_default'                       => [
                 'drivers' => [
