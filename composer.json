@@ -22,7 +22,7 @@
   ],
   "require": {
     "php": "^7.2",
-    "zfr/zfr-oauth2-server": "^0.9",
+    "zfr/zfr-oauth2-server": "^0.10",
     "doctrine/orm": "^2.7",
     "psr/container": "^1.0",
     "roave/security-advisories": "dev-master"
