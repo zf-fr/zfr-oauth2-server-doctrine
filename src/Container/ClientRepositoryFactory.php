@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2\Server\Doctrine\Container;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psr\Container\ContainerInterface;

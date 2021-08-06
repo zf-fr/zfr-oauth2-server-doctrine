@@ -18,7 +18,7 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory;
 use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;

@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2Test\Server\Container;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
