@@ -24,16 +24,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
-use ZfrOAuth2\Server\Model\AccessToken;
+use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Repository\ClientRepository;
+use ZfrOAuth2\Server\Model\Client;
 
 /**
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory
  */
-class AccessTokenRepositoryFactoryTest extends TestCase
+class ClientRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
@@ -41,24 +41,24 @@ class AccessTokenRepositoryFactoryTest extends TestCase
         $objectManager   = $this->createMock(EntityManagerInterface::class);
         $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $objectManager->expects($this->at(0))
+        $objectManager->expects($this->once())
             ->method('getClassMetadata')
-            ->with(AccessToken::class)
+            ->with(Client::class)
             ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')
-            ->with(AccessToken::class)
+            ->with(Client::class)
             ->willReturn($objectManager);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
             ->with(ManagerRegistry::class)
             ->willReturn($managerRegistry);
 
-        $factory = new AccessTokenRepositoryFactory();
+        $factory = new ClientRepositoryFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(AccessTokenRepository::class, $service);
+        $this->assertInstanceOf(ClientRepository::class, $service);
     }
 }

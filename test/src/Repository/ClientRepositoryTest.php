@@ -67,11 +67,11 @@ class ClientRepositoryTest extends TestCase
     {
         $client = $this->createMock(Client::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('persist')
             ->with($client);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($client);
 
@@ -82,7 +82,7 @@ class ClientRepositoryTest extends TestCase
 
     public function testFindById(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 
@@ -93,7 +93,7 @@ class ClientRepositoryTest extends TestCase
 
     public function testIdExistsTrue(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn($this->createMock(Client::class));
 
@@ -104,7 +104,7 @@ class ClientRepositoryTest extends TestCase
 
     public function testIdExistsFalse(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 

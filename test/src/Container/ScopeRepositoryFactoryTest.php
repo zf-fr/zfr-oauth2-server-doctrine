@@ -41,7 +41,7 @@ class ScopeRepositoryFactoryTest extends TestCase
         $objectManager   = $this->createMock(EntityManagerInterface::class);
         $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $objectManager->expects($this->at(0))
+        $objectManager->expects($this->once())
             ->method('getClassMetadata')
             ->with(Scope::class)
             ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
@@ -51,7 +51,7 @@ class ScopeRepositoryFactoryTest extends TestCase
             ->with(Scope::class)
             ->willReturn($objectManager);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
             ->with(ManagerRegistry::class)
             ->willReturn($managerRegistry);

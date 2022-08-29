@@ -26,18 +26,18 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
+use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
-use ZfrOAuth2\Server\Model\AccessToken;
-use ZfrOAuth2\Server\Repository\AccessTokenRepositoryInterface;
+use ZfrOAuth2\Server\Model\RefreshToken;
+use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
 
 /**
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  *
- * @covers  \ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository
+ * @covers  \ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
  */
-class AccessTokenRepositoryTest extends TestCase
+class RefreshTokenRepositoryTest extends TestCase
 {
     /**
      * @var EntityManager|MockObject
@@ -50,7 +50,7 @@ class AccessTokenRepositoryTest extends TestCase
     protected $meta;
 
     /**
-     * @var AccessTokenRepository
+     * @var RefreshTokenRepository
      */
     protected $repository;
 
@@ -58,23 +58,23 @@ class AccessTokenRepositoryTest extends TestCase
     {
         $this->em         = $this->createMock(EntityManager::class);
         $this->meta       = $this->createMock(ClassMetadata::class);
-        $this->repository = new AccessTokenRepository($this->em, $this->meta);
+        $this->repository = new RefreshTokenRepository($this->em, $this->meta);
     }
 
     public function testHasInterface(): void
     {
-        $this->assertInstanceOf(AccessTokenRepositoryInterface::class, $this->repository);
+        $this->assertInstanceOf(RefreshTokenRepositoryInterface::class, $this->repository);
     }
 
     public function testSave(): void
     {
-        $token = $this->createMock(AccessToken::class);
+        $token = $this->createMock(RefreshToken::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('persist')
             ->with($token);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($token);
 
@@ -85,7 +85,7 @@ class AccessTokenRepositoryTest extends TestCase
 
     public function testFindByToken(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 
@@ -98,11 +98,11 @@ class AccessTokenRepositoryTest extends TestCase
     {
         $token = $this->createMock(AbstractToken::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('remove')
             ->with($token);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($token);
 
@@ -113,25 +113,25 @@ class AccessTokenRepositoryTest extends TestCase
     {
         $qb = $this->createMock(QueryBuilder::class);
         $q  = $this->createMock(AbstractQuery::class);
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('createQueryBuilder')
             ->willReturn($qb);
 
-        $qb->expects($this->at(0))
+        $qb->expects($this->once())
             ->method('delete')
-            ->with(AccessToken::class, 'token')
+            ->with(RefreshToken::class, 'token')
             ->willReturn($qb);
 
-        $qb->expects($this->at(1))
+        $qb->expects($this->once())
             ->method('where')
             ->with('token.expiresAt < :now')
             ->willReturn($qb);
 
-        $qb->expects($this->at(2))
+        $qb->expects($this->once())
             ->method('setParameter')
             ->willReturn($qb);
 
-        $qb->expects($this->at(3))
+        $qb->expects($this->once())
             ->method('getQuery')
             ->willReturn($q);
 
@@ -143,9 +143,9 @@ class AccessTokenRepositoryTest extends TestCase
 
     public function testTokenExistsTrue(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
-            ->willReturn($this->createMock(AccessToken::class));
+            ->willReturn($this->createMock(RefreshToken::class));
 
         $returned = $this->repository->tokenExists('token');
 
@@ -154,7 +154,7 @@ class AccessTokenRepositoryTest extends TestCase
 
     public function testTokenExistsFalse(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 

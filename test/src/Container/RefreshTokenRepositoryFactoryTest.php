@@ -24,16 +24,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Repository\ClientRepository;
-use ZfrOAuth2\Server\Model\Client;
+use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
+use ZfrOAuth2\Server\Model\RefreshToken;
 
 /**
  * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory
  */
-class ClientRepositoryFactoryTest extends TestCase
+class RefreshTokenRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
@@ -41,24 +41,24 @@ class ClientRepositoryFactoryTest extends TestCase
         $objectManager   = $this->createMock(EntityManagerInterface::class);
         $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $objectManager->expects($this->at(0))
+        $objectManager->expects($this->once())
             ->method('getClassMetadata')
-            ->with(Client::class)
+            ->with(RefreshToken::class)
             ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')
-            ->with(Client::class)
+            ->with(RefreshToken::class)
             ->willReturn($objectManager);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
             ->with(ManagerRegistry::class)
             ->willReturn($managerRegistry);
 
-        $factory = new ClientRepositoryFactory();
+        $factory = new RefreshTokenRepositoryFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(ClientRepository::class, $service);
+        $this->assertInstanceOf(RefreshTokenRepository::class, $service);
     }
 }
