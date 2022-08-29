@@ -20,6 +20,8 @@
       "homepage": "https://baskamer.nl"
     }
   ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "php": "^7.3",
     "zfr/zfr-oauth2-server": "^0.10",
