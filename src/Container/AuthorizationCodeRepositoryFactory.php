@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2\Server\Doctrine\Container;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Doctrine\Persistence\ObjectManager;
 use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Repository;
 use ZfrOAuth2\Server\Model\AuthorizationCode;

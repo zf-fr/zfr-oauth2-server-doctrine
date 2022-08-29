@@ -5,5 +5,10 @@
     <field name="name" type="string" length="60" nullable="false"/>
     <field name="secret" type="string" length="60" nullable="false"/>
     <field name="redirectUris" type="json_array" nullable="false" column="redirect_uris"/>
+    <field name="scopes" type="json_array" nullable="false">
+      <options>
+        <option name="default">[]</option>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>
