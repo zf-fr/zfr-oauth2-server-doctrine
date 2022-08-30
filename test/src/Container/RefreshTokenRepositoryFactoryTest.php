@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,19 +22,19 @@ declare(strict_types=1);
 namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
-use ZfrOAuth2\Server\Model\AccessToken;
+use ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
+use ZfrOAuth2\Server\Model\RefreshToken;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\RefreshTokenRepositoryFactory
  */
-class AccessTokenRepositoryFactoryTest extends TestCase
+class RefreshTokenRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
@@ -41,24 +42,24 @@ class AccessTokenRepositoryFactoryTest extends TestCase
         $objectManager   = $this->createMock(EntityManagerInterface::class);
         $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $objectManager->expects($this->at(0))
+        $objectManager->expects($this->once())
             ->method('getClassMetadata')
-            ->with(AccessToken::class)
-            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
+            ->with(RefreshToken::class)
+            ->willReturn($this->createMock(ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')
-            ->with(AccessToken::class)
+            ->with(RefreshToken::class)
             ->willReturn($objectManager);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
             ->with(ManagerRegistry::class)
             ->willReturn($managerRegistry);
 
-        $factory = new AccessTokenRepositoryFactory();
+        $factory = new RefreshTokenRepositoryFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(AccessTokenRepository::class, $service);
+        $this->assertInstanceOf(RefreshTokenRepository::class, $service);
     }
 }

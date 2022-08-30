@@ -19,38 +19,34 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2\Server\Doctrine\Repository;
+namespace ZfrOAuth2Test\Server\Doctrine;
 
-use Doctrine\ORM\EntityRepository;
-use ZfrOAuth2\Server\Model\Client;
-use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
+use PHPUnit\Framework\TestCase;
+use ZfrOAuth2\Server\Doctrine\ModuleConfig;
 
-class ClientRepository extends EntityRepository implements ClientRepositoryInterface
+use function is_callable;
+
+/**
+ * @licence MIT
+ * @covers  \ZfrOAuth2\Server\Doctrine\ModuleConfig
+ */
+class ModuleConfigTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function save(Client $client): Client
+    public function testCanBeInvoked(): void
     {
-        $this->_em->persist($client);
-        $this->_em->flush($client);
+        $moduleConfig = new ModuleConfig();
 
-        return $client;
+        static::assertTrue(is_callable($moduleConfig));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findById(string $id): ?Client
+    public function testGetArrayWith(): void
     {
-        return $this->find($id);
-    }
+        $moduleConfig = new ModuleConfig();
+        $config       = $moduleConfig->__invoke();
 
-    /**
-     * {@inheritdoc}
-     */
-    public function idExists(string $id): bool
-    {
-        return $this->find($id) !== null;
+        $this->assertIsArray($config);
+        $this->assertArrayHasKey('zfr_oauth2_server_doctrine', $config);
+        $this->assertArrayHasKey('doctrine', $config);
+        $this->assertArrayHasKey('dependencies', $config);
     }
 }

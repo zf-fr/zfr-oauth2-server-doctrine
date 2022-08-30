@@ -2,7 +2,7 @@
 
 Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-server)
 
-[![Build Status](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine.png)](https://travis-ci.org/zf-fr/zfr-oauth2-server-doctrine)
+[![Continuous Integration](https://github.com/zf-fr/zfr-oauth2-server-doctrine/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/zf-fr/zfr-oauth2-server-doctrine/actions/workflows/continuous-integration.yml)
 [![Latest Stable Version](https://poser.pugx.org/zfr/zfr-oauth2-server-doctrine/v/stable.png)](https://packagist.org/packages/zfr/zfr-oauth2-server-doctrine)
 [![Coverage Status](https://coveralls.io/repos/github/zf-fr/zfr-oauth2-server-doctrine/badge.svg?branch=master)](https://coveralls.io/github/zf-fr/zfr-oauth2-server-doctrine?branch=master)
 [![Total Downloads](https://poser.pugx.org/zfr/zfr-oauth2-server-doctrine/downloads.png)](https://packagist.org/packages/zfr/zfr-oauth2-server-doctrine)
@@ -11,15 +11,15 @@ Doctrine 2 adapter for [ZfrOAuth2Server](http://github.com/zf-fr/zfr-oauth2-serv
 
 ## Requirements
 
-- PHP 7.2 or higher
-- doctrine/orm ~2.5
+- PHP 7.4 or higher
+- doctrine/orm ^2.8
 
 ## Installation
 
 Installation is only officially supported using Composer:
 
 ```sh
-php composer.phar require zfr/zfr-oauth2-server-doctrine:^0.2
+php composer.phar require zfr/zfr-oauth2-server-doctrine:^0.3
 ```
 
 ## Support

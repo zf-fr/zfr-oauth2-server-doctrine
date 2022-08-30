@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,15 +25,10 @@ use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  */
 class DoctrineOptionsFactory
 {
-    /**
-     * @param ContainerInterface $container
-     * @return DoctrineOptions
-     */
     public function __invoke(ContainerInterface $container): DoctrineOptions
     {
         $config  = $container->get('config');

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,32 +19,20 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2Test\Server\Doctrine\Options;
+ini_set('error_reporting', (string) (E_ALL & ~E_DEPRECATED & ~E_STRICT));
 
-use PHPUnit\Framework\TestCase;
-use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
+$files = [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'];
 
-/**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
- * @licence MIT
- *
- * @covers  \ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
- */
-class DoctrineOptionsTest extends TestCase
-{
-    public function testDefaults(): void
-    {
-        $options = new DoctrineOptions();
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        $loader = require $file;
 
-        $this->assertEquals('id', $options->getTokenOwnerPkColumn());
-    }
-
-    public function testSettersAndGetters(): void
-    {
-        $options = new DoctrineOptions([
-            'token_owner_pk_column' => 'user_id',
-        ]);
-
-        $this->assertEquals('user_id', $options->getTokenOwnerPkColumn());
+        break;
     }
 }
+
+if (! isset($loader)) {
+    throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
+}
+
+unset($files, $file, $loader);

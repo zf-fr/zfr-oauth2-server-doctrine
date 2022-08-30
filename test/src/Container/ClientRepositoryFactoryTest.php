@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,19 +22,19 @@ declare(strict_types=1);
 namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory;
-use ZfrOAuth2\Server\Doctrine\Repository\AuthorizationCodeRepository;
-use ZfrOAuth2\Server\Model\AuthorizationCode;
+use ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Repository\ClientRepository;
+use ZfrOAuth2\Server\Model\Client;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\AuthorizationCodeRepositoryFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\ClientRepositoryFactory
  */
-class AuthorizationCodeRepositoryFactoryTest extends TestCase
+class ClientRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
@@ -41,24 +42,24 @@ class AuthorizationCodeRepositoryFactoryTest extends TestCase
         $objectManager   = $this->createMock(EntityManagerInterface::class);
         $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $objectManager->expects($this->at(0))
+        $objectManager->expects($this->once())
             ->method('getClassMetadata')
-            ->with(AuthorizationCode::class)
-            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
+            ->with(Client::class)
+            ->willReturn($this->createMock(ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')
-            ->with(AuthorizationCode::class)
+            ->with(Client::class)
             ->willReturn($objectManager);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
             ->with(ManagerRegistry::class)
             ->willReturn($managerRegistry);
 
-        $factory = new AuthorizationCodeRepositoryFactory();
+        $factory = new ClientRepositoryFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(AuthorizationCodeRepository::class, $service);
+        $this->assertInstanceOf(ClientRepository::class, $service);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,20 +19,31 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-ini_set('error_reporting', (string) E_ALL);
+namespace ZfrOAuth2Test\Server\Doctrine\Container;
 
-$files = [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'];
+use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
+use ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory;
+use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        $loader = require $file;
+/**
+ * @licence MIT
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
+ */
+class ServerOptionsFactoryTest extends TestCase
+{
+    public function testCanCreateFromFactory(): void
+    {
+        $container = $this->createMock(ContainerInterface::class);
 
-        break;
+        $container->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn(['zfr_oauth2_server_doctrine' => []]);
+
+        $factory = new DoctrineOptionsFactory();
+        $service = $factory($container);
+
+        $this->assertInstanceOf(DoctrineOptions::class, $service);
     }
 }
-
-if (! isset($loader)) {
-    throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
-}
-
-unset($files, $file, $loader);

@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,55 +27,47 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use ZfrOAuth2\Server\Doctrine\Repository\AuthorizationCodeRepository;
+use ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository;
 use ZfrOAuth2\Server\Model\AbstractToken;
-use ZfrOAuth2\Server\Model\AuthorizationCode;
-use ZfrOAuth2\Server\Repository\AuthorizationCodeRepositoryInterface;
+use ZfrOAuth2\Server\Model\RefreshToken;
+use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
- * @covers  \ZfrOAuth2\Server\Doctrine\Repository\AuthorizationCodeRepository
+ * @covers  \ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
  */
-class AuthorizationCodeRepositoryTest extends TestCase
+class RefreshTokenRepositoryTest extends TestCase
 {
-    /**
-     * @var EntityManager|MockObject
-     */
+    /** @var EntityManager|MockObject */
     protected $em;
 
-    /**
-     * @var ClassMetadata|MockObject
-     */
+    /** @var ClassMetadata|MockObject */
     protected $meta;
 
-    /**
-     * @var AuthorizationCodeRepository
-     */
+    /** @var RefreshTokenRepository */
     protected $repository;
 
     public function setUp(): void
     {
         $this->em         = $this->createMock(EntityManager::class);
         $this->meta       = $this->createMock(ClassMetadata::class);
-        $this->repository = new AuthorizationCodeRepository($this->em, $this->meta);
+        $this->repository = new RefreshTokenRepository($this->em, $this->meta);
     }
 
     public function testHasInterface(): void
     {
-        $this->assertInstanceOf(AuthorizationCodeRepositoryInterface::class, $this->repository);
+        $this->assertInstanceOf(RefreshTokenRepositoryInterface::class, $this->repository);
     }
 
     public function testSave(): void
     {
-        $token = $this->createMock(AuthorizationCode::class);
+        $token = $this->createMock(RefreshToken::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('persist')
             ->with($token);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($token);
 
@@ -85,7 +78,7 @@ class AuthorizationCodeRepositoryTest extends TestCase
 
     public function testFindByToken(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 
@@ -98,11 +91,11 @@ class AuthorizationCodeRepositoryTest extends TestCase
     {
         $token = $this->createMock(AbstractToken::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('remove')
             ->with($token);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($token);
 
@@ -113,25 +106,25 @@ class AuthorizationCodeRepositoryTest extends TestCase
     {
         $qb = $this->createMock(QueryBuilder::class);
         $q  = $this->createMock(AbstractQuery::class);
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('createQueryBuilder')
             ->willReturn($qb);
 
-        $qb->expects($this->at(0))
+        $qb->expects($this->once())
             ->method('delete')
-            ->with(AuthorizationCode::class, 'token')
+            ->with(RefreshToken::class, 'token')
             ->willReturn($qb);
 
-        $qb->expects($this->at(1))
+        $qb->expects($this->once())
             ->method('where')
             ->with('token.expiresAt < :now')
             ->willReturn($qb);
 
-        $qb->expects($this->at(2))
+        $qb->expects($this->once())
             ->method('setParameter')
             ->willReturn($qb);
 
-        $qb->expects($this->at(3))
+        $qb->expects($this->once())
             ->method('getQuery')
             ->willReturn($q);
 
@@ -143,9 +136,9 @@ class AuthorizationCodeRepositoryTest extends TestCase
 
     public function testTokenExistsTrue(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
-            ->willReturn($this->createMock(AuthorizationCode::class));
+            ->willReturn($this->createMock(RefreshToken::class));
 
         $returned = $this->repository->tokenExists('token');
 
@@ -154,7 +147,7 @@ class AuthorizationCodeRepositoryTest extends TestCase
 
     public function testTokenExistsFalse(): void
     {
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('find')
             ->willReturn(null);
 

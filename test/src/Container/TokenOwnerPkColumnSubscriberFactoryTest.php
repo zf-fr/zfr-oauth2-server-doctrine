@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,33 +19,32 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2Test\Server\Doctrine\Container;
+namespace ZfrOAuth2Test\Server\Container;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory;
+use ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory;
 use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
+use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\DoctrineOptionsFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory
  */
-class ServerOptionsFactoryTest extends TestCase
+class TokenOwnerPkColumnSubscriberFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
         $container = $this->createMock(ContainerInterface::class);
 
-        $container->expects($this->at(0))
+        $container->expects($this->once())
             ->method('get')
-            ->with('config')
-            ->willReturn(['zfr_oauth2_server_doctrine' => []]);
+            ->with(DoctrineOptions::class)
+            ->willReturn($this->createMock(DoctrineOptions::class));
 
-        $factory = new DoctrineOptionsFactory();
+        $factory = new TokenOwnerPkColumnSubscriberFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(DoctrineOptions::class, $service);
+        $this->assertInstanceOf(TokenOwnerPkColumnSubscriber::class, $service);
     }
 }

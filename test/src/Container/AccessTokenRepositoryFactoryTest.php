@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,31 +21,45 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2Test\Server\Container;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory;
-use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
-use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
+use ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory;
+use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
+use ZfrOAuth2\Server\Model\AccessToken;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory
+ * @covers  \ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory
  */
-class TokenOwnerPkColumnSubscriberFactoryTest extends TestCase
+class AccessTokenRepositoryFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
         $container       = $this->createMock(ContainerInterface::class);
+        $objectManager   = $this->createMock(EntityManagerInterface::class);
+        $managerRegistry = $this->createMock(ManagerRegistry::class);
 
-        $container->expects($this->at(0))
+        $objectManager->expects($this->once())
+            ->method('getClassMetadata')
+            ->with(AccessToken::class)
+            ->willReturn($this->createMock(ClassMetadata::class));
+
+        $managerRegistry->expects($this->once())
+            ->method('getManagerForClass')
+            ->with(AccessToken::class)
+            ->willReturn($objectManager);
+
+        $container->expects($this->once())
             ->method('get')
-            ->with(DoctrineOptions::class)
-            ->willReturn($this->createMock(DoctrineOptions::class));
+            ->with(ManagerRegistry::class)
+            ->willReturn($managerRegistry);
 
-        $factory = new TokenOwnerPkColumnSubscriberFactory();
+        $factory = new AccessTokenRepositoryFactory();
         $service = $factory($container);
 
-        $this->assertInstanceOf(TokenOwnerPkColumnSubscriber::class, $service);
+        $this->assertInstanceOf(AccessTokenRepository::class, $service);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,33 +19,30 @@ declare(strict_types=1);
  * and is licensed under the MIT license.
  */
 
-namespace ZfrOAuth2Test\Server\Doctrine;
+namespace ZfrOAuth2Test\Server\Doctrine\Options;
 
 use PHPUnit\Framework\TestCase;
-use ZfrOAuth2\Server\Doctrine\ModuleConfig;
+use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 
 /**
- * @author  Bas Kamer <baskamer@gmail.com>
  * @licence MIT
- * @covers  \ZfrOAuth2\Server\Doctrine\ModuleConfig
+ * @covers  \ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions
  */
-class ModuleConfigTest extends TestCase
+class DoctrineOptionsTest extends TestCase
 {
-    public function testCanBeInvoked(): void
+    public function testDefaults(): void
     {
-        $moduleConfig = new ModuleConfig();
+        $options = new DoctrineOptions();
 
-        static::assertTrue(is_callable($moduleConfig));
+        $this->assertEquals('id', $options->getTokenOwnerPkColumn());
     }
 
-    public function testGetArrayWith(): void
+    public function testSettersAndGetters(): void
     {
-        $moduleConfig = new ModuleConfig();
-        $config       = $moduleConfig->__invoke();
+        $options = new DoctrineOptions([
+            'token_owner_pk_column' => 'user_id',
+        ]);
 
-        $this->assertIsArray($config);
-        $this->assertArrayHasKey('zfr_oauth2_server_doctrine', $config);
-        $this->assertArrayHasKey('doctrine', $config);
-        $this->assertArrayHasKey('dependencies', $config);
+        $this->assertEquals('user_id', $options->getTokenOwnerPkColumn());
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,26 +32,18 @@ use ZfrOAuth2\Server\Model\Scope;
 use ZfrOAuth2\Server\Repository\ScopeRepositoryInterface;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
  * @covers  \ZfrOAuth2\Server\Doctrine\Repository\ScopeRepository
  */
 class ScopeRepositoryTest extends TestCase
 {
-    /**
-     * @var EntityManager|MockObject
-     */
+    /** @var EntityManager|MockObject */
     protected $em;
 
-    /**
-     * @var ClassMetadata|MockObject
-     */
+    /** @var ClassMetadata|MockObject */
     protected $meta;
 
-    /**
-     * @var ScopeRepository
-     */
+    /** @var ScopeRepository */
     protected $repository;
 
     public function setUp(): void
@@ -69,11 +62,11 @@ class ScopeRepositoryTest extends TestCase
     {
         $scope = $this->createMock(Scope::class);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('persist')
             ->with($scope);
 
-        $this->em->expects($this->at(1))
+        $this->em->expects($this->once())
             ->method('flush')
             ->with($scope);
 
@@ -87,11 +80,11 @@ class ScopeRepositoryTest extends TestCase
         $unitOfWork = $this->createMock(UnitOfWork::class);
         $persister  = $this->createMock(EntityPersister::class);
 
-        $unitOfWork->expects($this->at(0))
+        $unitOfWork->expects($this->once())
             ->method('getEntityPersister')
             ->willReturn($persister);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('getUnitOfWork')
             ->willReturn($unitOfWork);
 
@@ -109,11 +102,11 @@ class ScopeRepositoryTest extends TestCase
         $unitOfWork = $this->createMock(UnitOfWork::class);
         $persister  = $this->createMock(EntityPersister::class);
 
-        $unitOfWork->expects($this->at(0))
+        $unitOfWork->expects($this->once())
             ->method('getEntityPersister')
             ->willReturn($persister);
 
-        $this->em->expects($this->at(0))
+        $this->em->expects($this->once())
             ->method('getUnitOfWork')
             ->willReturn($unitOfWork);
 

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,18 +21,16 @@ declare(strict_types=1);
 
 namespace ZfrOAuth2\Server\Doctrine\Options;
 
+use function str_replace;
+
 /**
  * Options class
  *
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  */
 class DoctrineOptions
 {
-    /**
-     * @var string
-     */
-    private $tokenOwnerPkColumn = 'id';
+    private string $tokenOwnerPkColumn = 'id';
 
     /**
      * Constructor
@@ -58,17 +57,11 @@ class DoctrineOptions
         }
     }
 
-    /**
-     * @return string
-     */
     public function getTokenOwnerPkColumn(): string
     {
         return $this->tokenOwnerPkColumn;
     }
 
-    /**
-     * @param string $tokenOwnerPkColumn
-     */
     public function setTokenOwnerPkColumn(string $tokenOwnerPkColumn): void
     {
         $this->tokenOwnerPkColumn = $tokenOwnerPkColumn;
