@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,9 +28,6 @@ use Psr\Container\ContainerInterface;
 use ZfrOAuth2\Server\Doctrine\Repository;
 use ZfrOAuth2\Server\Model\Scope;
 
-/**
- * Class ScopeRepositoryFactory
- */
 class ScopeRepositoryFactory
 {
     public function __invoke(ContainerInterface $container): Repository\ScopeRepository

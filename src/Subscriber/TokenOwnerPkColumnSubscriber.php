@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace ZfrOAuth2\Server\Doctrine\Subscriber;
 
 use Doctrine\Common\EventSubscriber as EventSubscriberInterface;
@@ -12,14 +13,9 @@ use ZfrOAuth2\Server\Model\AbstractToken;
 
 class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var DoctrineOptions
-     */
+    /** @var DoctrineOptions */
     protected $options;
 
-    /**
-     * @param DoctrineOptions $options
-     */
     public function __construct(DoctrineOptions $options)
     {
         $this->options = $options;
@@ -35,9 +31,6 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         /** @var ClassMetadataInfo $metadata */
@@ -47,6 +40,8 @@ class TokenOwnerPkColumnSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $metadata->associationMappings['owner']['joinColumns'][0]['referencedColumnName'] = $this->options->getTokenOwnerPkColumn();
+        $metadata->associationMappings['owner']['joinColumns'][0]['referencedColumnName'] = $this
+            ->options
+            ->getTokenOwnerPkColumn();
     }
 }

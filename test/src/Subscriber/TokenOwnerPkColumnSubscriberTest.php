@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,21 +31,15 @@ use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 use ZfrOAuth2\Server\Model\AbstractToken;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
  * @covers  \ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber
  */
 class TokenOwnerPkColumnSubscriberTest extends TestCase
 {
-    /**
-     * @var DoctrineOptions
-     */
+    /** @var DoctrineOptions */
     protected $options;
 
-    /**
-     * @var TokenOwnerPkColumnSubscriber
-     */
+    /** @var TokenOwnerPkColumnSubscriber */
     protected $subscriber;
 
     public function setUp(): void
@@ -66,7 +61,7 @@ class TokenOwnerPkColumnSubscriberTest extends TestCase
     /**
      * @dataProvider providerLoadClassMetadata
      */
-    public function testLoadClassMetadata($className, $columnName): void
+    public function testLoadClassMetadata(string $className, ?string $columnName): void
     {
         $eventsArgs    = $this->createMock(LoadClassMetadataEventArgs::class);
         $classMetaData = $this->createMock(ClassMetadataInfo::class);
@@ -97,7 +92,7 @@ class TokenOwnerPkColumnSubscriberTest extends TestCase
     {
         return [
             [AbstractToken::class, 'user_id'],
-            ['Some\Entity\Foo', false],
+            ['Some\Entity\Foo', null],
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +28,6 @@ use ZfrOAuth2\Server\Doctrine\Options\DoctrineOptions;
 use ZfrOAuth2\Server\Doctrine\Subscriber\TokenOwnerPkColumnSubscriber;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\TokenOwnerPkColumnSubscriberFactory
  */
@@ -35,7 +35,7 @@ class TokenOwnerPkColumnSubscriberFactoryTest extends TestCase
 {
     public function testCanCreateFromFactory(): void
     {
-        $container       = $this->createMock(ContainerInterface::class);
+        $container = $this->createMock(ContainerInterface::class);
 
         $container->expects($this->once())
             ->method('get')

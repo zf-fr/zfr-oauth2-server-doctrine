@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,26 +30,18 @@ use ZfrOAuth2\Server\Model\Client;
 use ZfrOAuth2\Server\Repository\ClientRepositoryInterface;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
  * @covers  \ZfrOAuth2\Server\Doctrine\Repository\ClientRepository
  */
 class ClientRepositoryTest extends TestCase
 {
-    /**
-     * @var EntityManager|MockObject
-     */
+    /** @var EntityManager|MockObject */
     protected $em;
 
-    /**
-     * @var ClassMetadata|MockObject
-     */
+    /** @var ClassMetadata|MockObject */
     protected $meta;
 
-    /**
-     * @var ClientRepository
-     */
+    /** @var ClientRepository */
     protected $repository;
 
     public function setUp(): void

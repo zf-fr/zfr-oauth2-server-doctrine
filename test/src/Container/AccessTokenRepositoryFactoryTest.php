@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,6 +22,7 @@ declare(strict_types=1);
 namespace ZfrOAuth2Test\Server\Container;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -29,7 +31,6 @@ use ZfrOAuth2\Server\Doctrine\Repository\AccessTokenRepository;
 use ZfrOAuth2\Server\Model\AccessToken;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\Container\AccessTokenRepositoryFactory
  */
@@ -44,7 +45,7 @@ class AccessTokenRepositoryFactoryTest extends TestCase
         $objectManager->expects($this->once())
             ->method('getClassMetadata')
             ->with(AccessToken::class)
-            ->willReturn($this->createMock(\Doctrine\ORM\Mapping\ClassMetadata::class));
+            ->willReturn($this->createMock(ClassMetadata::class));
 
         $managerRegistry->expects($this->once())
             ->method('getManagerForClass')

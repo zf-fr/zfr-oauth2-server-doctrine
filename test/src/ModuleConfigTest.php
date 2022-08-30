@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -23,8 +24,9 @@ namespace ZfrOAuth2Test\Server\Doctrine;
 use PHPUnit\Framework\TestCase;
 use ZfrOAuth2\Server\Doctrine\ModuleConfig;
 
+use function is_callable;
+
 /**
- * @author  Bas Kamer <baskamer@gmail.com>
  * @licence MIT
  * @covers  \ZfrOAuth2\Server\Doctrine\ModuleConfig
  */

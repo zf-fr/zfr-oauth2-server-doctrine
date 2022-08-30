@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,26 +33,18 @@ use ZfrOAuth2\Server\Model\RefreshToken;
 use ZfrOAuth2\Server\Repository\RefreshTokenRepositoryInterface;
 
 /**
- * @author  Michaël Gallego <mic.gallego@gmail.com>
  * @licence MIT
- *
  * @covers  \ZfrOAuth2\Server\Doctrine\Repository\RefreshTokenRepository
  */
 class RefreshTokenRepositoryTest extends TestCase
 {
-    /**
-     * @var EntityManager|MockObject
-     */
+    /** @var EntityManager|MockObject */
     protected $em;
 
-    /**
-     * @var ClassMetadata|MockObject
-     */
+    /** @var ClassMetadata|MockObject */
     protected $meta;
 
-    /**
-     * @var RefreshTokenRepository
-     */
+    /** @var RefreshTokenRepository */
     protected $repository;
 
     public function setUp(): void
