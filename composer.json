@@ -29,7 +29,7 @@
     }
   },
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "zfr/zfr-oauth2-server": "^0.10",
     "doctrine/orm": "^2.8",
     "psr/container": "^1.0 || ^2.0",
