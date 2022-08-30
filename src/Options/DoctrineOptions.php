@@ -30,8 +30,7 @@ use function str_replace;
  */
 class DoctrineOptions
 {
-    /** @var string */
-    private $tokenOwnerPkColumn = 'id';
+    private string $tokenOwnerPkColumn = 'id';
 
     /**
      * Constructor
